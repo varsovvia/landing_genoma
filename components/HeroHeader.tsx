@@ -74,7 +74,7 @@ export default function HeroHeader() {
           Crafting pixel-perfect worlds for games & retro aesthetics
         </p>
         
-        {/* Contact Link - Simple and Direct */}
+        {/* Contact Link - Simple and Direct - Fixed positioning */}
         <div className="mt-12 mb-16 animate-fade-in-up" style={{ animationDelay: '1s' }}>
           <a
             href="mailto:genoma@example.com?subject=Commission%20Inquiry"
