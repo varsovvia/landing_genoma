@@ -1,4 +1,4 @@
-# Pixel Art Portfolio
+# Pixel Art Portfolio - GENOMA
 
 A minimal but polished pixel art portfolio built with Next.js, TypeScript, and Tailwind CSS. Features a responsive gallery, tag filtering, and a beautiful lightbox modal.
 
