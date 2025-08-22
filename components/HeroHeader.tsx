@@ -75,7 +75,7 @@ export default function HeroHeader() {
         </p>
         
         {/* Contact Link - Simple and Direct */}
-        <div className="mt-16 animate-fade-in-up" style={{ animationDelay: '1s' }}>
+        <div className="mt-16 mb-20 animate-fade-in-up" style={{ animationDelay: '1s' }}>
           <a
             href="mailto:genoma@example.com?subject=Commission%20Inquiry"
             className="inline-block px-12 py-6 bg-emerald-600/20 border-2 border-emerald-500/40 text-emerald-300 text-xl font-semibold rounded-2xl hover:bg-emerald-600/30 hover:border-emerald-400/60 hover:text-white transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-emerald-500/25 backdrop-blur-sm"
@@ -85,8 +85,8 @@ export default function HeroHeader() {
         </div>
       </div>
 
-      {/* Enhanced Scroll Indicator */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center">
+      {/* Enhanced Scroll Indicator - Positioned below content */}
+      <div className="absolute bottom-12 left-0 right-0 flex justify-center">
         <div className="flex flex-col items-center space-y-2 animate-bounce">
           <span className="text-emerald-400/60 text-sm font-mono tracking-wider">
             SCROLL
