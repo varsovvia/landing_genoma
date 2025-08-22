@@ -41,7 +41,11 @@ export default function Home() {
         if (entry.isIntersecting) {
           const sectionId = entry.target.getAttribute('data-section');
           if (sectionId) {
-            setVisibleSections(prev => new Set([...prev, sectionId]));
+            setVisibleSections(prev => {
+              const newSet = new Set(prev);
+              newSet.add(sectionId);
+              return newSet;
+            });
           }
         }
       });
