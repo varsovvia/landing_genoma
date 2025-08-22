@@ -13,11 +13,18 @@ export default function Home() {
   const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set(['hero']));
+  const [displayedArtworks, setDisplayedArtworks] = useState<number>(8); // Show first 8 artworks
 
   const filteredArtworks = useMemo(() => {
     if (!selectedTag) return artworks;
     return artworks.filter(artwork => artwork.tags.includes(selectedTag));
   }, [selectedTag]);
+
+  const displayedFilteredArtworks = useMemo(() => {
+    return filteredArtworks.slice(0, displayedArtworks);
+  }, [filteredArtworks, displayedArtworks]);
+
+  const hasMoreArtworks = displayedArtworks < filteredArtworks.length;
 
   const handleArtworkClick = (artwork: Artwork) => {
     setSelectedArtwork(artwork);
@@ -27,6 +34,15 @@ export default function Home() {
   const handleCloseLightbox = () => {
     setIsLightboxOpen(false);
     setSelectedArtwork(null);
+  };
+
+  const handleLoadMore = () => {
+    setDisplayedArtworks(prev => Math.min(prev + 8, filteredArtworks.length));
+  };
+
+  const handleTagSelect = (tag: string | null) => {
+    setSelectedTag(tag);
+    setDisplayedArtworks(8); // Reset to show first 8 when changing tags
   };
 
   // Intersection Observer for scroll animations
@@ -82,51 +98,51 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className={`text-center p-6 bg-surface/50 border border-border rounded-xl hover-lift group transition-all duration-700 ${
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            <div className={`text-center p-4 sm:p-6 bg-surface/50 border border-border rounded-xl hover-lift group transition-all duration-700 ${
               visibleSections.has('what-i-do') 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 translate-y-10'
             }`} style={{ transitionDelay: '200ms' }}>
-              <div className="w-20 h-20 bg-emerald-600/20 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-10 h-10 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-emerald-600/20 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-8 h-8 sm:w-10 sm:h-10 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M4 2a1 1 0 011-1h10a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V2zm0 4a1 1 0 011-1h10a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V6zm0 4a1 1 0 011-1h10a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm0 4a1 1 0 011-1h10a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-emerald-400 transition-colors duration-300">Game Assets</h3>
-              <p className="text-neutral-300">
+              <h3 className="text-lg sm:text-xl font-semibold mb-3 text-white group-hover:text-emerald-400 transition-colors duration-300">Game Assets</h3>
+              <p className="text-neutral-300 text-sm sm:text-base">
                 Characters, enemies, items, and UI elements designed for pixel-perfect gameplay.
               </p>
             </div>
             
-            <div className={`text-center p-6 bg-surface/50 border border-border rounded-xl hover-lift group transition-all duration-700 ${
+            <div className={`text-center p-4 sm:p-6 bg-surface/50 border border-border rounded-xl hover-lift group transition-all duration-700 ${
               visibleSections.has('what-i-do') 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 translate-y-10'
             }`} style={{ transitionDelay: '400ms' }}>
-              <div className="w-20 h-20 bg-emerald-600/20 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-10 h-10 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-emerald-600/20 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-8 h-8 sm:w-10 sm:h-10 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-emerald-400 transition-colors duration-300">Tilesets & Maps</h3>
-              <p className="text-neutral-300">
+              <h3 className="text-lg sm:text-xl font-semibold mb-3 text-white group-hover:text-emerald-400 transition-colors duration-300">Tilesets & Maps</h3>
+              <p className="text-neutral-300 text-sm sm:text-base">
                 Complete environment tilesets and map designs for immersive game worlds.
               </p>
             </div>
             
-            <div className={`text-center p-6 bg-surface/50 border border-border rounded-xl hover-lift group transition-all duration-700 ${
+            <div className={`text-center p-4 sm:p-6 bg-surface/50 border border-border rounded-xl hover-lift group transition-all duration-700 ${
               visibleSections.has('what-i-do') 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 translate-y-10'
             }`} style={{ transitionDelay: '600ms' }}>
-              <div className="w-20 h-20 bg-emerald-600/20 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-10 h-10 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-emerald-600/20 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-8 h-8 sm:w-10 sm:h-10 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-emerald-400 transition-colors duration-300">Animations</h3>
-              <p className="text-neutral-300">
+              <h3 className="text-lg sm:text-xl font-semibold mb-3 text-white group-hover:text-emerald-400 transition-colors duration-300">Animations</h3>
+              <p className="text-neutral-300 text-sm sm:text-base">
                 Smooth, frame-by-frame animations that bring static sprites to life.
               </p>
             </div>
@@ -163,18 +179,18 @@ export default function Home() {
               <TagFilters
                 tags={allTags}
                 selectedTag={selectedTag}
-                onTagSelect={setSelectedTag}
+                onTagSelect={handleTagSelect}
               />
             </div>
           </div>
 
           {/* Artworks Grid */}
-          <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 transition-all duration-700 ${
+          <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 transition-all duration-700 ${
             visibleSections.has('gallery') 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-10'
           }`} style={{ transitionDelay: '500ms' }}>
-            {filteredArtworks.map((artwork, index) => (
+            {displayedFilteredArtworks.map((artwork, index) => (
               <div
                 key={artwork.slug}
                 className={`transition-all duration-700 ${
@@ -191,9 +207,21 @@ export default function Home() {
               </div>
             ))}
             
-            {filteredArtworks.length === 0 && (
+            {displayedFilteredArtworks.length === 0 && (
               <div className="col-span-full text-center py-12">
                 <p className="text-neutral-400 text-lg">No artworks found for this tag.</p>
+              </div>
+            )}
+
+            {/* Load More Button */}
+            {hasMoreArtworks && (
+              <div className="col-span-full text-center py-8 sm:py-12">
+                <button
+                  onClick={handleLoadMore}
+                  className="px-8 py-4 bg-emerald-600/20 border-2 border-emerald-500/40 text-emerald-300 text-lg font-semibold rounded-xl hover:bg-emerald-600/30 hover:border-emerald-400/60 hover:text-white transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/25 backdrop-blur-sm"
+                >
+                  Load More Artworks
+                </button>
               </div>
             )}
           </div>

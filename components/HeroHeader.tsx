@@ -57,48 +57,48 @@ export default function HeroHeader() {
         </div>
       </div>
       
-      {/* Main Content - Centered */}
-      <div className="relative z-10 text-center px-4">
-        {/* Main Title - Much Bigger */}
-        <h1 className="text-8xl md:text-9xl lg:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-white to-emerald-300 mb-8 animate-pulse">
+      {/* Main Content - Centered with Mobile Optimization */}
+      <div className="relative z-10 text-center px-4 sm:px-6">
+        {/* Main Title - Mobile Responsive */}
+        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-white to-emerald-300 mb-6 sm:mb-8 animate-pulse">
           GENOMA
         </h1>
         
-        {/* Subtitle - Bigger and Cleaner */}
-        <p className="text-4xl md:text-5xl lg:text-6xl text-neutral-200 font-light mb-12 animate-fade-in-up">
+        {/* Subtitle - Mobile Responsive */}
+        <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-neutral-200 font-light mb-8 sm:mb-12 animate-fade-in-up">
           PIXEL ARTIST
         </p>
         
-        {/* Simple Tagline */}
-        <p className="text-xl md:text-2xl text-neutral-400 font-mono tracking-wider max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+        {/* Simple Tagline - Mobile Responsive */}
+        <p className="text-lg sm:text-xl md:text-2xl text-neutral-400 font-mono tracking-wider max-w-2xl mx-auto animate-fade-in-up px-2" style={{ animationDelay: '0.5s' }}>
           Crafting pixel-perfect worlds for games & retro aesthetics
         </p>
         
-        {/* Contact Link - Simple and Direct - Fixed positioning */}
-        <div className="mt-12 mb-16 animate-fade-in-up" style={{ animationDelay: '1s' }}>
+        {/* Contact Link - Mobile Optimized */}
+        <div className="mt-12 sm:mt-16 mb-16 sm:mb-20 animate-fade-in-up" style={{ animationDelay: '1s' }}>
           <a
             href="mailto:genoma@example.com?subject=Commission%20Inquiry"
-            className="inline-block px-8 py-4 bg-emerald-600/20 border-2 border-emerald-500/40 text-emerald-300 text-lg font-semibold rounded-xl hover:bg-emerald-600/30 hover:border-emerald-400/60 hover:text-white transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-emerald-500/25 backdrop-blur-sm"
+            className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-emerald-600/20 border-2 border-emerald-500/40 text-emerald-300 text-base sm:text-lg font-semibold rounded-xl hover:bg-emerald-600/30 hover:border-emerald-400/60 hover:text-white transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-emerald-500/25 backdrop-blur-sm"
           >
             Get in Touch
           </a>
         </div>
       </div>
 
-      {/* Enhanced Scroll Indicator - Positioned below content */}
-      <div className="absolute bottom-12 left-0 right-0 flex justify-center">
+      {/* Enhanced Scroll Indicator - Mobile Responsive */}
+      <div className="absolute bottom-8 sm:bottom-12 left-0 right-0 flex justify-center">
         <div className="flex flex-col items-center space-y-2 animate-bounce">
-          <span className="text-emerald-400/60 text-sm font-mono tracking-wider">
+          <span className="text-emerald-400/60 text-xs sm:text-sm font-mono tracking-wider">
             SCROLL
           </span>
-          <div className="w-6 h-10 border-2 border-emerald-400/40 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-emerald-400/60 rounded-full mt-2 animate-bounce" />
+          <div className="w-5 sm:w-6 h-8 sm:h-10 border-2 border-emerald-400/40 rounded-full flex justify-center">
+            <div className="w-1 h-2 sm:h-3 bg-emerald-400/60 rounded-full mt-2 animate-bounce" />
           </div>
         </div>
       </div>
 
       {/* Smooth Transition Overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/50 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 bg-gradient-to-t from-black/50 to-transparent" />
       
       {/* Custom CSS for animations */}
       <style jsx>{`
